@@ -14,10 +14,10 @@ buildscript {
 }
 
 ext {
-    DB_HOST = System.getenv('DB_HOST')
-    DB_PORT = System.getenv('DB_PORT')
-    DB_NAME = System.getenv('DB_NAME')
-    DB_PASSWORD = System.getenv('DB_PASSWORD')
+    DB_HOST = System.getenv('DB_HOST') ?: 'localhost'
+    DB_PORT = System.getenv('DB_PORT') ?: '5432'
+    DB_NAME = System.getenv('DB_NAME') ?: 'onko-db'
+    DB_PASSWORD = System.getenv('DB_PASSWORD') ?: 'root'
 }
 
 apply plugin: 'java'
@@ -74,7 +74,7 @@ task generateJooq {
     doLast {
         GenerationTool.generate(configuration)
 
-        Files.walk(Paths.get(srcDir() + 'com/example/model/jooq/tables/pojos'))
+        Files.walk(Paths.get(srcDir() + 'ru/onko/model/jooq/tables/pojos'))
                 .filter(path -> Files.isRegularFile(path))
                 .forEach(path -> {
                     List<String> list = Files.readAllLines(path)
