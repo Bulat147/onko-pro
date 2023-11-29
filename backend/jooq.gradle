@@ -47,7 +47,6 @@ task generateJooq {
                                     new Generate()
                                             .withRoutines(false)
                                             .withPojos(true)
-                                            .withDaos(true)
                             )
                             .withTarget(
                                     new Target()
