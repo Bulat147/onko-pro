@@ -2,7 +2,11 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'nu.studer.jooq' version '8.2.1'
 }
+
+apply plugin: 'nu.studer.jooq'
+apply from: 'jooq.gradle'
 
 group = 'ru.onko'
 version = '0.0.1-SNAPSHOT'
@@ -26,9 +30,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.liquibase:liquibase-core'
+    implementation 'org.springframework.boot:spring-boot-starter-jooq'
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 }
@@ -36,3 +43,5 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+assemble.dependsOn(generateJooq)

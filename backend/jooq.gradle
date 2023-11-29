@@ -1,0 +1,110 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath(
+                'org.jooq:jooq:3.18.4',
+                'org.jooq:jooq-codegen:3.18.4',
+                'org.jooq:jooq-meta:3.18.4',
+                'org.postgresql:postgresql:42.6.0'
+        )
+    }
+}
+
+ext {
+    DB_HOST = System.getenv('DB_HOST')
+    DB_PORT = System.getenv('DB_PORT')
+    DB_NAME = System.getenv('DB_NAME')
+    DB_PASSWORD = System.getenv('DB_PASSWORD')
+}
+
+apply plugin: 'java'
+apply plugin: 'nu.studer.jooq'
+
+
+import org.jooq.codegen.GenerationTool
+import org.jooq.meta.jaxb.*
+
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.nio.file.Paths
+
+task generateJooq {
+    var database = new Database().withExcludes("databasechangeloglock|databasechangelog").withInputSchema("public")
+    def configuration = new Configuration()
+            .withJdbc(
+                    new Jdbc()
+                            .withDriver('org.postgresql.Driver')
+                            .withUrl("jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}")
+                            .withUser('postgres')
+                            .withPassword("${DB_PASSWORD}"))
+            .withGenerator(
+                    new Generator()
+                            .withDatabase(database)
+                            .withGenerate(
+                                    new Generate()
+                                            .withRoutines(false)
+                                            .withPojos(true)
+                                            .withDaos(true)
+                            )
+                            .withTarget(
+                                    new Target()
+                                            .withPackageName('ru.onko.model.jooq')
+                                            .withDirectory(projectDir.toString() + '/src/main/java')
+                            )
+                            .withStrategy(
+                                    new Strategy()
+                                            .withMatchers(
+                                                    new Matchers()
+                                                            .withTables(
+                                                                    new MatchersTableType()
+                                                                            .withTableIdentifier(
+                                                                                    new MatcherRule()
+                                                                                            .withExpression('$0_Entity')
+                                                                                            .withTransform(MatcherTransformType.UPPER)
+                                                                            ).withPojoClass(new MatcherRule().withExpression('$0_Entity').withTransform(MatcherTransformType.PASCAL))
+                                                            )
+                                            )
+                            )
+            )
+
+
+    doLast {
+        GenerationTool.generate(configuration)
+
+        Files.walk(Paths.get(srcDir() + 'com/example/model/jooq/tables/pojos'))
+                .filter(path -> Files.isRegularFile(path))
+                .forEach(path -> {
+                    List<String> list = Files.readAllLines(path)
+
+                    boolean importAdded = false
+                    boolean annotationsAdded = false
+                    for (int i = 1; i < list.size(); i++) {
+                        if (list.get(i - 1).startsWith("import") && list.get(i) == "") {
+                            list.add(i + 1, "import lombok.Builder;")
+                            i += 2
+                            importAdded = true
+                        }
+                        if (importAdded) {
+                            if (list.get(i).startsWith("public class")) {
+                                list.add(i - 1, "@Builder")
+                                annotationsAdded = true
+                                break
+                            }
+                        }
+                    }
+
+                    if (!importAdded || !annotationsAdded) {
+                        throw new RuntimeException()
+                    }
+
+                    Files.write(path, list, StandardCharsets.UTF_8)
+                })
+    }
+}
+
+String srcDir() {
+    return projectDir.path + "/src/main/java/"
+}
