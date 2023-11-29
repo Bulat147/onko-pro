@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 'create-account-state-enum'
+      author: Gafiyatullin Aidar
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            splitStatements: true
+            path: SQL/20231129-create-account-state-enum.sql
+            relativeToChangelogFile: true

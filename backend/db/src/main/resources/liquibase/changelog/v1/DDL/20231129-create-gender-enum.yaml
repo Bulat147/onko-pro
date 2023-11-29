@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 'create-gender-enum'
+      author: Gafiyatullin Aidar
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            splitStatements: true
+            path: SQL/20231129-create-gender-enum.sql
+            relativeToChangelogFile: true

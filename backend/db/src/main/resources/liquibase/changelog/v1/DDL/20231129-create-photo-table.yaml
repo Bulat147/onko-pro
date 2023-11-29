@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 'create-photo-table'
+      author: Gafiyatullin Aidar
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            splitStatements: true
+            path: SQL/20231129-create-photo-table.sql
+            relativeToChangelogFile: true
