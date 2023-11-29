@@ -1,0 +1,16 @@
+
+version: '3.8'
+
+services:
+  pg-onko-db:
+    container_name: onko-db
+    image: postgres:12-alpine
+    restart: on-failure
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
+      POSTGRES_DB: ${DB_NAME:-onko-db}
+
+
