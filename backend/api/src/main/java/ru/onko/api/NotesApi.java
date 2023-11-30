@@ -14,7 +14,7 @@ import java.util.UUID;
 public interface NotesApi {
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     NoteCreationResponse create(@RequestBody NoteCreationRequest request);
     @PatchMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -33,15 +33,15 @@ public interface NotesApi {
     List<NoteResponse> findAll();
     @PostMapping("/tags")
     @ResponseStatus(HttpStatus.OK)
-    NoteResponse addTags(NoteTagsAdditionRequest request);
+    NoteResponse addTags(@RequestBody NoteTagsAdditionRequest request);
     @DeleteMapping("/tags")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    NoteResponse deleteTags(NoteTagsDeletionRequest request);
+    NoteResponse deleteTags(@RequestBody NoteTagsDeletionRequest request);
     @PostMapping("/symptoms")
     @ResponseStatus(HttpStatus.OK)
-    NoteResponse addSymptoms(NoteSymptomsAdditionRequest request);
+    NoteResponse addSymptoms(@RequestBody NoteSymptomsAdditionRequest request);
     @DeleteMapping("/symptoms")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    NoteResponse deleteSymptoms(NoteSymptomsDeletionRequest request);
+    NoteResponse deleteSymptoms(@RequestBody NoteSymptomsDeletionRequest request);
 
 }

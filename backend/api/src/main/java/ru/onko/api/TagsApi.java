@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("/tag")
-public interface TagApi {
+public interface TagsApi {
 
     // полное удаление
     @DeleteMapping("/{id}")
