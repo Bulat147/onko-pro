@@ -21,7 +21,6 @@ public class ArticleEntity implements Serializable {
     private UUID id;
     private String title;
     private String content;
-    private UUID accountId;
     private String position;
 
     public ArticleEntity() {}
@@ -30,7 +29,6 @@ public class ArticleEntity implements Serializable {
         this.id = value.id;
         this.title = value.title;
         this.content = value.content;
-        this.accountId = value.accountId;
         this.position = value.position;
     }
 
@@ -38,13 +36,11 @@ public class ArticleEntity implements Serializable {
         UUID id,
         String title,
         String content,
-        UUID accountId,
         String position
     ) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.accountId = accountId;
         this.position = position;
     }
 
@@ -91,20 +87,6 @@ public class ArticleEntity implements Serializable {
     }
 
     /**
-     * Getter for <code>public.article.account_id</code>.
-     */
-    public UUID getAccountId() {
-        return this.accountId;
-    }
-
-    /**
-     * Setter for <code>public.article.account_id</code>.
-     */
-    public void setAccountId(UUID accountId) {
-        this.accountId = accountId;
-    }
-
-    /**
      * Getter for <code>public.article.position</code>.
      */
     public String getPosition() {
@@ -145,12 +127,6 @@ public class ArticleEntity implements Serializable {
         }
         else if (!this.content.equals(other.content))
             return false;
-        if (this.accountId == null) {
-            if (other.accountId != null)
-                return false;
-        }
-        else if (!this.accountId.equals(other.accountId))
-            return false;
         if (this.position == null) {
             if (other.position != null)
                 return false;
@@ -167,7 +143,6 @@ public class ArticleEntity implements Serializable {
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.title == null) ? 0 : this.title.hashCode());
         result = prime * result + ((this.content == null) ? 0 : this.content.hashCode());
-        result = prime * result + ((this.accountId == null) ? 0 : this.accountId.hashCode());
         result = prime * result + ((this.position == null) ? 0 : this.position.hashCode());
         return result;
     }
@@ -179,7 +154,6 @@ public class ArticleEntity implements Serializable {
         sb.append(id);
         sb.append(", ").append(title);
         sb.append(", ").append(content);
-        sb.append(", ").append(accountId);
         sb.append(", ").append(position);
 
         sb.append(")");

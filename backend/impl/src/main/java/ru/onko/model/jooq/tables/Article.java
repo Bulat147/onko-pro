@@ -4,18 +4,16 @@
 package ru.onko.model.jooq.tables;
 
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function5;
+import org.jooq.Function4;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row5;
+import org.jooq.Row4;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -68,11 +66,6 @@ public class Article extends TableImpl<ArticleRecord> {
     public final TableField<ArticleRecord, String> CONTENT = createField(DSL.name("content"), SQLDataType.VARCHAR(2048).nullable(false), this, "");
 
     /**
-     * The column <code>public.article.account_id</code>.
-     */
-    public final TableField<ArticleRecord, UUID> ACCOUNT_ID = createField(DSL.name("account_id"), SQLDataType.UUID.nullable(false), this, "");
-
-    /**
      * The column <code>public.article.position</code>.
      */
     public final TableField<ArticleRecord, String> POSITION = createField(DSL.name("position"), SQLDataType.VARCHAR(32).nullable(false), this, "");
@@ -121,23 +114,6 @@ public class Article extends TableImpl<ArticleRecord> {
     }
 
     @Override
-    public List<ForeignKey<ArticleRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.ARTICLE__ARTICLE_ACCOUNT_ID_FKEY);
-    }
-
-    private transient Account _account;
-
-    /**
-     * Get the implicit join path to the <code>public.account</code> table.
-     */
-    public Account account() {
-        if (_account == null)
-            _account = new Account(this, Keys.ARTICLE__ARTICLE_ACCOUNT_ID_FKEY);
-
-        return _account;
-    }
-
-    @Override
     public Article as(String alias) {
         return new Article(DSL.name(alias), this);
     }
@@ -177,18 +153,18 @@ public class Article extends TableImpl<ArticleRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row5 type methods
+    // Row4 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<UUID, String, String, UUID, String> fieldsRow() {
-        return (Row5) super.fieldsRow();
+    public Row4<UUID, String, String, String> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function5<? super UUID, ? super String, ? super String, ? super UUID, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function4<? super UUID, ? super String, ? super String, ? super String, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -196,7 +172,7 @@ public class Article extends TableImpl<ArticleRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function5<? super UUID, ? super String, ? super String, ? super UUID, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super UUID, ? super String, ? super String, ? super String, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
