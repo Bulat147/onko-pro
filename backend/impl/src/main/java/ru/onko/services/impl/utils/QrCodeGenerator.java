@@ -12,7 +12,7 @@ public class QrCodeGenerator {
     public static BufferedImage generateQRCodeImage(String barcodeText) throws Exception {
         QRCodeWriter barcodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix =
-                barcodeWriter.encode(barcodeText, BarcodeFormat.QR_CODE, 1000, 1000);
+                barcodeWriter.encode(barcodeText, BarcodeFormat.QR_CODE, 700, 700);
 
         return MatrixToImageWriter.toBufferedImage(bitMatrix);
     }

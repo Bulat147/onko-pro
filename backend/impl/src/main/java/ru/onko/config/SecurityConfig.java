@@ -47,7 +47,7 @@ public class SecurityConfig {
     }
 
     private List<PrefixPathRequestMatcher> authenticationPrefixPathRequestMatchers() {
-        return List.of(new PrefixPathRequestMatcher("/user", HttpMethod.GET, HttpMethod.POST));
+        return List.of(new PrefixPathRequestMatcher("/user", HttpMethod.GET, HttpMethod.POST), new PrefixPathRequestMatcher("/generate", HttpMethod.GET));
     }
 
     private List<PathRequestMatcher> authorizationPathRequestMatchers() {
