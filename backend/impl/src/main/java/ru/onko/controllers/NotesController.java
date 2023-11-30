@@ -29,7 +29,7 @@ public class NotesController implements NotesApi {
     }
 
     @Override
-    public List<NoteResponse> findByWord(UUID tag, List<UUID> symptoms, String word) {
+    public List<NoteResponse> searchByWord(UUID tagId, List<UUID> symptoms, String word) {
         return null;
     }
 
@@ -55,6 +55,11 @@ public class NotesController implements NotesApi {
 
     @Override
     public NoteResponse deleteSymptoms(NoteSymptomsDeletionRequest request) {
+        return null;
+    }
+
+    @Override
+    public List<NoteResponse> findByLink(String hash) {
         return null;
     }
 }

@@ -18,4 +18,9 @@ public class SymptomsController implements SymptomsApi {
     public List<SymptomResponse> findAll() {
         return null;
     }
+
+    @Override
+    public List<SymptomResponse> findByLink(String hash) {
+        return null;
+    }
 }

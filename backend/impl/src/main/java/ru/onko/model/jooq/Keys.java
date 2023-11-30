@@ -10,6 +10,7 @@ import org.jooq.UniqueKey;
 import org.jooq.impl.DSL;
 import org.jooq.impl.Internal;
 
+import ru.onko.model.jooq.tables.AccessHash;
 import ru.onko.model.jooq.tables.Account;
 import ru.onko.model.jooq.tables.AccountRoles;
 import ru.onko.model.jooq.tables.Article;
@@ -21,6 +22,7 @@ import ru.onko.model.jooq.tables.NotesSymptoms;
 import ru.onko.model.jooq.tables.NotesTags;
 import ru.onko.model.jooq.tables.Photo;
 import ru.onko.model.jooq.tables.Symptom;
+import ru.onko.model.jooq.tables.records.AccessHashRecord;
 import ru.onko.model.jooq.tables.records.AccountRecord;
 import ru.onko.model.jooq.tables.records.AccountRolesRecord;
 import ru.onko.model.jooq.tables.records.ArticlePhotosRecord;
@@ -45,6 +47,7 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<AccessHashRecord> ACCESS_HASH_PKEY = Internal.createUniqueKey(AccessHash.ACCESS_HASH_ENTITY, DSL.name("access_hash_pkey"), new TableField[] { AccessHash.ACCESS_HASH_ENTITY.ID }, true);
     public static final UniqueKey<AccountRecord> ACCOUNT_EMAIL_KEY = Internal.createUniqueKey(Account.ACCOUNT_ENTITY, DSL.name("account_email_key"), new TableField[] { Account.ACCOUNT_ENTITY.EMAIL }, true);
     public static final UniqueKey<AccountRecord> ACCOUNT_PKEY = Internal.createUniqueKey(Account.ACCOUNT_ENTITY, DSL.name("account_pkey"), new TableField[] { Account.ACCOUNT_ENTITY.ID }, true);
     public static final UniqueKey<AccountRolesRecord> ACCOUNT_ROLES_PKEY = Internal.createUniqueKey(AccountRoles.ACCOUNT_ROLES_ENTITY, DSL.name("account_roles_pkey"), new TableField[] { AccountRoles.ACCOUNT_ROLES_ENTITY.ACCOUNT_ID, AccountRoles.ACCOUNT_ROLES_ENTITY.ACCOUNT_ROLE }, true);
@@ -63,6 +66,7 @@ public class Keys {
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final ForeignKey<AccessHashRecord, AccountRecord> ACCESS_HASH__ACCESS_HASH_USER_ID_FKEY = Internal.createForeignKey(AccessHash.ACCESS_HASH_ENTITY, DSL.name("access_hash_user_id_fkey"), new TableField[] { AccessHash.ACCESS_HASH_ENTITY.USER_ID }, Keys.ACCOUNT_PKEY, new TableField[] { Account.ACCOUNT_ENTITY.ID }, true);
     public static final ForeignKey<AccountRecord, PhotoRecord> ACCOUNT__ACCOUNT_PHOTO_ID_FKEY = Internal.createForeignKey(Account.ACCOUNT_ENTITY, DSL.name("account_photo_id_fkey"), new TableField[] { Account.ACCOUNT_ENTITY.PHOTO_ID }, Keys.PHOTO_PKEY, new TableField[] { Photo.PHOTO_ENTITY.ID }, true);
     public static final ForeignKey<AccountRolesRecord, AccountRecord> ACCOUNT_ROLES__ACCOUNT_ROLES_ACCOUNT_ID_FKEY = Internal.createForeignKey(AccountRoles.ACCOUNT_ROLES_ENTITY, DSL.name("account_roles_account_id_fkey"), new TableField[] { AccountRoles.ACCOUNT_ROLES_ENTITY.ACCOUNT_ID }, Keys.ACCOUNT_PKEY, new TableField[] { Account.ACCOUNT_ENTITY.ID }, true);
     public static final ForeignKey<ArticlePhotosRecord, ArticleRecord> ARTICLE_PHOTOS__ARTICLE_PHOTOS_ARTICLE_ID_FKEY = Internal.createForeignKey(ArticlePhotos.ARTICLE_PHOTOS_ENTITY, DSL.name("article_photos_article_id_fkey"), new TableField[] { ArticlePhotos.ARTICLE_PHOTOS_ENTITY.ARTICLE_ID }, Keys.ARTICLE_PKEY, new TableField[] { Article.ARTICLE_ENTITY.ID }, true);

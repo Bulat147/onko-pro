@@ -24,7 +24,7 @@ public interface NotesApi {
     void delete(@PathVariable UUID id);
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    List<NoteResponse> findByWord(@RequestParam(required = false) UUID tagId,
+    List<NoteResponse> searchByWord(@RequestParam(required = false) UUID tagId,
                                   @RequestParam(required = false) List<UUID> symptoms,
                                   @RequestParam String word);
     @GetMapping
@@ -42,5 +42,7 @@ public interface NotesApi {
     @DeleteMapping("/symptoms")
     @ResponseStatus(HttpStatus.ACCEPTED)
     NoteResponse deleteSymptoms(@RequestBody NoteSymptomsDeletionRequest request);
-
+    @GetMapping("/link/{hash}")
+    @ResponseStatus(HttpStatus.OK)
+    List<NoteResponse> findByLink(@PathVariable String hash);
 }

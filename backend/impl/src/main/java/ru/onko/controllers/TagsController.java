@@ -18,4 +18,9 @@ public class TagsController implements TagsApi {
     public List<TagResponse> findAll() {
         return null;
     }
+
+    @Override
+    public List<TagResponse> findByLink(String hash) {
+        return null;
+    }
 }
