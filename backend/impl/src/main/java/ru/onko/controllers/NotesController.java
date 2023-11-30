@@ -29,7 +29,7 @@ public class NotesController implements NotesApi {
     }
 
     @Override
-    public List<NoteResponse> findByWord(Integer page, Integer size, UUID tag, List<UUID> symptoms, String word) {
+    public List<NoteResponse> findByWord(UUID tag, List<UUID> symptoms, String word) {
         return null;
     }
 

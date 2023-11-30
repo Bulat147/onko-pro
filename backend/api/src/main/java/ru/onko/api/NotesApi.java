@@ -22,12 +22,11 @@ public interface NotesApi {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     void delete(@PathVariable UUID id);
-    @GetMapping("/search/{word}")
+    @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    List<NoteResponse> findByWord(@RequestParam Integer page, @RequestParam Integer size,
-                                  @RequestParam(required = false) UUID tagId,
+    List<NoteResponse> findByWord(@RequestParam(required = false) UUID tagId,
                                   @RequestParam(required = false) List<UUID> symptoms,
-                                  @PathVariable String word);
+                                  @RequestParam String word);
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<NoteResponse> findAll();
