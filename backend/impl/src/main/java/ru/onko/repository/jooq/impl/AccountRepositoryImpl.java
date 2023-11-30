@@ -28,6 +28,13 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
+    public Optional<AccountEntity> findByEmail(String email) {
+        return dsl.selectFrom(ACCOUNT_ENTITY)
+                .where(ACCOUNT_ENTITY.EMAIL.eq(email))
+                .fetchOptionalInto(AccountEntity.class);
+    }
+
+    @Override
     public UUID save(AccountEntity account) {
         return dsl.insertInto(ACCOUNT_ENTITY)
                 .set(dsl.newRecord(ACCOUNT_ENTITY, account))

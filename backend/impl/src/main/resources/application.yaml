@@ -6,3 +6,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: liquibase/changelog/changelog-master.yaml
+
+security:
+  jwt:
+    secret: e0a07206-2d68-44a4-bdc2-4353f5135a32

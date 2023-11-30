@@ -14,6 +14,7 @@ import ru.onko.model.jooq.tables.NoteTag;
 import ru.onko.model.jooq.tables.NotesSymptoms;
 import ru.onko.model.jooq.tables.NotesTags;
 import ru.onko.model.jooq.tables.Photo;
+import ru.onko.model.jooq.tables.RefreshToken;
 import ru.onko.model.jooq.tables.Symptom;
 
 
@@ -72,6 +73,11 @@ public class Tables {
      * The table <code>public.photo</code>.
      */
     public static final Photo PHOTO_ENTITY = Photo.PHOTO_ENTITY;
+
+    /**
+     * The table <code>public.refresh_token</code>.
+     */
+    public static final RefreshToken REFRESH_TOKEN_ENTITY = RefreshToken.REFRESH_TOKEN_ENTITY;
 
     /**
      * The table <code>public.symptom</code>.

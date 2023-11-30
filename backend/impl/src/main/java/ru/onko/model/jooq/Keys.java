@@ -20,6 +20,7 @@ import ru.onko.model.jooq.tables.NoteTag;
 import ru.onko.model.jooq.tables.NotesSymptoms;
 import ru.onko.model.jooq.tables.NotesTags;
 import ru.onko.model.jooq.tables.Photo;
+import ru.onko.model.jooq.tables.RefreshToken;
 import ru.onko.model.jooq.tables.Symptom;
 import ru.onko.model.jooq.tables.records.AccountRecord;
 import ru.onko.model.jooq.tables.records.AccountRolesRecord;
@@ -31,6 +32,7 @@ import ru.onko.model.jooq.tables.records.NoteTagRecord;
 import ru.onko.model.jooq.tables.records.NotesSymptomsRecord;
 import ru.onko.model.jooq.tables.records.NotesTagsRecord;
 import ru.onko.model.jooq.tables.records.PhotoRecord;
+import ru.onko.model.jooq.tables.records.RefreshTokenRecord;
 import ru.onko.model.jooq.tables.records.SymptomRecord;
 
 
@@ -57,6 +59,8 @@ public class Keys {
     public static final UniqueKey<NotesTagsRecord> NOTES_TAGS_PKEY = Internal.createUniqueKey(NotesTags.NOTES_TAGS_ENTITY, DSL.name("notes_tags_pkey"), new TableField[] { NotesTags.NOTES_TAGS_ENTITY.NOTE_ID, NotesTags.NOTES_TAGS_ENTITY.TAG_ID }, true);
     public static final UniqueKey<PhotoRecord> PHOTO_NAME_KEY = Internal.createUniqueKey(Photo.PHOTO_ENTITY, DSL.name("photo_name_key"), new TableField[] { Photo.PHOTO_ENTITY.NAME }, true);
     public static final UniqueKey<PhotoRecord> PHOTO_PKEY = Internal.createUniqueKey(Photo.PHOTO_ENTITY, DSL.name("photo_pkey"), new TableField[] { Photo.PHOTO_ENTITY.ID }, true);
+    public static final UniqueKey<RefreshTokenRecord> REFRESH_TOKEN_ACCOUNT_ID_KEY = Internal.createUniqueKey(RefreshToken.REFRESH_TOKEN_ENTITY, DSL.name("refresh_token_account_id_key"), new TableField[] { RefreshToken.REFRESH_TOKEN_ENTITY.ACCOUNT_ID }, true);
+    public static final UniqueKey<RefreshTokenRecord> REFRESH_TOKEN_PKEY = Internal.createUniqueKey(RefreshToken.REFRESH_TOKEN_ENTITY, DSL.name("refresh_token_pkey"), new TableField[] { RefreshToken.REFRESH_TOKEN_ENTITY.ID }, true);
     public static final UniqueKey<SymptomRecord> SYMPTOM_PKEY = Internal.createUniqueKey(Symptom.SYMPTOM_ENTITY, DSL.name("symptom_pkey"), new TableField[] { Symptom.SYMPTOM_ENTITY.ID }, true);
 
     // -------------------------------------------------------------------------
@@ -75,5 +79,6 @@ public class Keys {
     public static final ForeignKey<NotesSymptomsRecord, SymptomRecord> NOTES_SYMPTOMS__NOTES_SYMPTOMS_SYMPTOM_ID_FKEY = Internal.createForeignKey(NotesSymptoms.NOTES_SYMPTOMS_ENTITY, DSL.name("notes_symptoms_symptom_id_fkey"), new TableField[] { NotesSymptoms.NOTES_SYMPTOMS_ENTITY.SYMPTOM_ID }, Keys.SYMPTOM_PKEY, new TableField[] { Symptom.SYMPTOM_ENTITY.ID }, true);
     public static final ForeignKey<NotesTagsRecord, NoteRecord> NOTES_TAGS__NOTES_TAGS_NOTE_ID_FKEY = Internal.createForeignKey(NotesTags.NOTES_TAGS_ENTITY, DSL.name("notes_tags_note_id_fkey"), new TableField[] { NotesTags.NOTES_TAGS_ENTITY.NOTE_ID }, Keys.NOTE_PKEY, new TableField[] { Note.NOTE_ENTITY.ID }, true);
     public static final ForeignKey<NotesTagsRecord, NoteTagRecord> NOTES_TAGS__NOTES_TAGS_TAG_ID_FKEY = Internal.createForeignKey(NotesTags.NOTES_TAGS_ENTITY, DSL.name("notes_tags_tag_id_fkey"), new TableField[] { NotesTags.NOTES_TAGS_ENTITY.TAG_ID }, Keys.NOTE_TAG_PKEY, new TableField[] { NoteTag.NOTE_TAG_ENTITY.ID }, true);
+    public static final ForeignKey<RefreshTokenRecord, AccountRecord> REFRESH_TOKEN__REFRESH_TOKEN_ACCOUNT_ID_FKEY = Internal.createForeignKey(RefreshToken.REFRESH_TOKEN_ENTITY, DSL.name("refresh_token_account_id_fkey"), new TableField[] { RefreshToken.REFRESH_TOKEN_ENTITY.ACCOUNT_ID }, Keys.ACCOUNT_PKEY, new TableField[] { Account.ACCOUNT_ENTITY.ID }, true);
     public static final ForeignKey<SymptomRecord, AccountRecord> SYMPTOM__SYMPTOM_ACCOUNT_ID_FKEY = Internal.createForeignKey(Symptom.SYMPTOM_ENTITY, DSL.name("symptom_account_id_fkey"), new TableField[] { Symptom.SYMPTOM_ENTITY.ACCOUNT_ID }, Keys.ACCOUNT_PKEY, new TableField[] { Account.ACCOUNT_ENTITY.ID }, true);
 }

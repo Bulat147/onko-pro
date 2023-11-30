@@ -11,13 +11,14 @@ dependencies {
     implementation project(':api')
     implementation project(':db')
 
-//    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.liquibase:liquibase-core'
     implementation 'org.springframework.boot:spring-boot-starter-jooq'
 
     runtimeOnly 'org.postgresql:postgresql'
+    implementation group: 'com.auth0', name: 'java-jwt', version: '4.4.0'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
