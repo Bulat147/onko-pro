@@ -8,6 +8,6 @@ import ru.onko.model.jooq.tables.pojos.AccountEntity;
 public class AuthUtil {
 
     public AccountEntity getAccount() {
-        return (AccountEntity) SecurityContextHolder.getContext().getAuthentication();
+        return (AccountEntity) (SecurityContextHolder.getContext().getAuthentication()).getPrincipal();
     }
 }
