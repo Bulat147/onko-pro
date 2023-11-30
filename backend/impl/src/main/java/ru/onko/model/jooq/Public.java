@@ -22,6 +22,7 @@ import ru.onko.model.jooq.tables.NoteTag;
 import ru.onko.model.jooq.tables.NotesSymptoms;
 import ru.onko.model.jooq.tables.NotesTags;
 import ru.onko.model.jooq.tables.Photo;
+import ru.onko.model.jooq.tables.RefreshToken;
 import ru.onko.model.jooq.tables.Symptom;
 
 
@@ -94,6 +95,11 @@ public class Public extends SchemaImpl {
     public final Photo PHOTO_ENTITY = Photo.PHOTO_ENTITY;
 
     /**
+     * The table <code>public.refresh_token</code>.
+     */
+    public final RefreshToken REFRESH_TOKEN_ENTITY = RefreshToken.REFRESH_TOKEN_ENTITY;
+
+    /**
      * The table <code>public.symptom</code>.
      */
     public final Symptom SYMPTOM_ENTITY = Symptom.SYMPTOM_ENTITY;
@@ -125,6 +131,7 @@ public class Public extends SchemaImpl {
             NotesSymptoms.NOTES_SYMPTOMS_ENTITY,
             NotesTags.NOTES_TAGS_ENTITY,
             Photo.PHOTO_ENTITY,
+            RefreshToken.REFRESH_TOKEN_ENTITY,
             Symptom.SYMPTOM_ENTITY
         );
     }

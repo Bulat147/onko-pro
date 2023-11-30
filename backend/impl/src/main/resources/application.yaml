@@ -10,4 +10,6 @@ spring:
 app:
   netlink: ${APP_HOST:http://localhost:8080}
 
-
+security:
+  jwt:
+    secret: e0a07206-2d68-44a4-bdc2-4353f5135a32
