@@ -7,8 +7,6 @@ import ru.onko.dto.request.UserUpdateRequest;
 import ru.onko.dto.response.UserResponse;
 import ru.onko.dto.response.UserUpdateResponse;
 
-import java.util.UUID;
-
 @RestController
 public class UsersController implements UsersApi {
     @Override
@@ -22,7 +20,7 @@ public class UsersController implements UsersApi {
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete() {
 
     }
 }

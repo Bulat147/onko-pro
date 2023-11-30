@@ -7,8 +7,6 @@ import ru.onko.dto.request.UserUpdateRequest;
 import ru.onko.dto.response.UserResponse;
 import ru.onko.dto.response.UserUpdateResponse;
 
-import java.util.UUID;
-
 @RequestMapping("/user")
 public interface UsersApi {
 
@@ -21,9 +19,9 @@ public interface UsersApi {
     @ResponseStatus(HttpStatus.OK)
     UserUpdateResponse update(@RequestBody UserUpdateRequest request,
                               @RequestParam(required = false) MultipartFile newImage);
-    @DeleteMapping("/{id}")
+    @DeleteMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void delete(@PathVariable UUID id);
+    void delete();
 
     // confirmEmail
 }
