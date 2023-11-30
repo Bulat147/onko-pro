@@ -12,6 +12,5 @@ public interface AccessLinkGeneratingApi {
     @ResponseStatus(HttpStatus.OK)
     String generateAccessLink();
     @GetMapping("/qr")
-    @ResponseStatus(HttpStatus.OK)
     ResponseEntity<?> generateAccessQrCode();
 }

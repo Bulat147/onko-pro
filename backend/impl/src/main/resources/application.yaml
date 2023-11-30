@@ -8,6 +8,6 @@ spring:
     change-log: liquibase/changelog/changelog-master.yaml
 
 app:
-  netlink: ${http://localhost:8080}
+  netlink: ${APP_HOST:http://localhost:8080}
 
 
