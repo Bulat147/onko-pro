@@ -33,8 +33,9 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
         for (PathRequestMatcher matcher : requestMatchers) {
             if (matcher.match(request)) {
-                if (authentication == null) {
+                if (!(authentication instanceof JwtAuthentication)) {
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                    return;
                 }
                 if (!authorize(response)) {
                     return;
@@ -46,8 +47,9 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
         for (PrefixPathRequestMatcher matcher : prefixRequestMatchers) {
             if (matcher.matchStart(request)) {
-                if (authentication == null) {
+                if (!(authentication instanceof JwtAuthentication)) {
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                    return;
                 }
                 if (!authorize(response)) {
                     return;
