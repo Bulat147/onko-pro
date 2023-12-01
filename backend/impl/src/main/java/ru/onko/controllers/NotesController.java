@@ -1,17 +1,22 @@
 package ru.onko.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 import ru.onko.api.NotesApi;
 import ru.onko.dto.request.*;
 import ru.onko.dto.response.NoteCreationResponse;
 import ru.onko.dto.response.NoteResponse;
 import ru.onko.dto.response.NoteUpdateResponse;
+import ru.onko.services.NotesService;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
+@RequiredArgsConstructor
 public class NotesController implements NotesApi {
+
+    private final NotesService notesService;
 
     @Override
     public NoteCreationResponse create(NoteCreationRequest request) {
@@ -59,7 +64,9 @@ public class NotesController implements NotesApi {
     }
 
     @Override
-    public List<NoteResponse> findByLink(String hash) {
-        return null;
+    public List<NoteResponse> findByLink(UUID hash, UUID tagId, List<UUID> symptoms, String word) {
+        return notesService.findByLink(hash, tagId, symptoms, word);
     }
+
+
 }

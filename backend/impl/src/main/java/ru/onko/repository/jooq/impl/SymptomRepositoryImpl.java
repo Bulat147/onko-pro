@@ -3,10 +3,10 @@ package ru.onko.repository.jooq.impl;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.onko.model.jooq.tables.Symptom;
 import ru.onko.model.jooq.tables.pojos.SymptomEntity;
 import ru.onko.repository.jooq.SymptomRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -47,5 +47,12 @@ public class SymptomRepositoryImpl implements SymptomRepository {
         dsl.delete(SYMPTOM_ENTITY)
                 .where(SYMPTOM_ENTITY.ID.eq(id))
                 .execute();
+    }
+
+    @Override
+    public List<SymptomEntity> findByUserId(UUID userId) {
+        return dsl.selectFrom(SYMPTOM_ENTITY)
+                .where(SYMPTOM_ENTITY.ACCOUNT_ID.eq(userId))
+                .fetchInto(SymptomEntity.class);
     }
 }

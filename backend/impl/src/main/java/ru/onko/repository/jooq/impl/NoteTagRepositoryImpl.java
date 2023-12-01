@@ -3,10 +3,10 @@ package ru.onko.repository.jooq.impl;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.onko.model.jooq.tables.NoteTag;
 import ru.onko.model.jooq.tables.pojos.NoteTagEntity;
 import ru.onko.repository.jooq.NoteTagRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -47,5 +47,12 @@ public class NoteTagRepositoryImpl implements NoteTagRepository {
         dsl.delete(NOTE_TAG_ENTITY)
                 .where(NOTE_TAG_ENTITY.ID.eq(id))
                 .execute();
+    }
+
+    @Override
+    public List<NoteTagEntity> findByUserId(UUID userId) {
+        return dsl.selectFrom(NOTE_TAG_ENTITY)
+                .where(NOTE_TAG_ENTITY.ACCOUNT_ID.eq(userId))
+                .fetchInto(NoteTagEntity.class);
     }
 }

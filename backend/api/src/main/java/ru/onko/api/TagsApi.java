@@ -19,6 +19,5 @@ public interface TagsApi {
     List<TagResponse> findAll();
     @GetMapping("/link/{hash}")
     @ResponseStatus(HttpStatus.OK)
-    List<TagResponse> findByLink(@PathVariable String hash);
-
+    List<TagResponse> findByLink(@PathVariable UUID hash);
 }

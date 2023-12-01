@@ -12,4 +12,7 @@ public interface NoteRepository extends CrudRepository<NoteEntity, UUID> {
     List<NoteTagEntity> findTagsById(UUID id);
 
     List<SymptomEntity> findSymptomsById(UUID id);
+
+    List<NoteEntity> searchByAccountId(UUID id);
+
 }

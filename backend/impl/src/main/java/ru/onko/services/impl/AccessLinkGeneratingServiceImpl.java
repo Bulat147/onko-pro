@@ -2,9 +2,6 @@ package ru.onko.services.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.onko.exceptions.QrCodeGenerationException;
 import ru.onko.model.jooq.tables.pojos.AccessHashEntity;
@@ -41,7 +38,7 @@ public class AccessLinkGeneratingServiceImpl implements AccessLinkGeneratingServ
     }
 
     @Override
-    public ResponseEntity<?> generateAccessQrCode(UUID userId){
+    public byte[] generateAccessQrCode(UUID userId){
         BufferedImage bufferedImage;
         try {
             bufferedImage = QrCodeGenerator.generateQRCodeImage(generateAccessLink(userId));
@@ -54,9 +51,6 @@ public class AccessLinkGeneratingServiceImpl implements AccessLinkGeneratingServ
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        byte[] imageData = baos.toByteArray();
-        return ResponseEntity.status(HttpStatus.OK)
-                .contentType(MediaType.valueOf("image/png"))
-                .body(imageData);
+        return baos.toByteArray();
     }
 }

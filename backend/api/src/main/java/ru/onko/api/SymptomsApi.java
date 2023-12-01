@@ -17,5 +17,5 @@ public interface SymptomsApi {
     List<SymptomResponse> findAll();
     @GetMapping("/link/{hash}")
     @ResponseStatus(HttpStatus.OK)
-    List<SymptomResponse> findByLink(@PathVariable String hash);
+    List<SymptomResponse> findByLink(@PathVariable UUID hash);
 }

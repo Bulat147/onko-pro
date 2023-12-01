@@ -44,5 +44,8 @@ public interface NotesApi {
     NoteResponse deleteSymptoms(@RequestBody NoteSymptomsDeletionRequest request);
     @GetMapping("/link/{hash}")
     @ResponseStatus(HttpStatus.OK)
-    List<NoteResponse> findByLink(@PathVariable String hash);
+    List<NoteResponse> findByLink(@PathVariable UUID hash,
+                                  @RequestParam(required = false) UUID tagId,
+                                  @RequestParam(required = false) List<UUID> symptoms,
+                                  @RequestParam(required = false) String word);
 }
