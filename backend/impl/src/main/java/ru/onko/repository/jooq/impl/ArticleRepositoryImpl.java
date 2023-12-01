@@ -3,7 +3,6 @@ package ru.onko.repository.jooq.impl;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.onko.model.jooq.tables.Article;
 import ru.onko.model.jooq.tables.pojos.ArticleEntity;
 import ru.onko.model.jooq.tables.pojos.PhotoEntity;
 import ru.onko.repository.jooq.ArticleRepository;
@@ -32,6 +31,12 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         //language=sql
         return dsl.selectFrom("photo WHERE id in (SELECT photo_id FROM article_photos WHERE article_id = :id)", id)
                 .fetchInto(PhotoEntity.class);
+    }
+
+    @Override
+    public List<ArticleEntity> findAll() {
+        return dsl.selectFrom(ARTICLE_ENTITY)
+                .fetchInto(ArticleEntity.class);
     }
 
     @Override

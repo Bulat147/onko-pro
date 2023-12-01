@@ -1,5 +1,6 @@
 package ru.onko.controllers;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import ru.onko.api.ArticlesApi;
@@ -9,15 +10,19 @@ import ru.onko.dto.response.ArticleCreationResponse;
 import ru.onko.dto.response.ArticleFavouriteResponse;
 import ru.onko.dto.response.ArticleResponse;
 import ru.onko.dto.response.ArticleUpdatingResponse;
+import ru.onko.services.ArticleService;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
+@RequiredArgsConstructor
 public class ArticlesController implements ArticlesApi {
+
+    private final ArticleService articleService;
     @Override
     public ArticleCreationResponse create(ArticleCreationRequest request, List<MultipartFile> images) {
-        return null;
+        return articleService.create(request, images);
     }
 
     @Override
@@ -27,7 +32,7 @@ public class ArticlesController implements ArticlesApi {
 
     @Override
     public void delete(UUID id) {
-
+        articleService.delete(id);
     }
 
     @Override
@@ -42,7 +47,7 @@ public class ArticlesController implements ArticlesApi {
 
     @Override
     public List<ArticleResponse> findByWord(String word) {
-        return null;
+        return articleService.findByWord(word);
     }
 
     @Override

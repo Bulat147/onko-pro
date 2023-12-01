@@ -67,4 +67,16 @@ public class NoteRepositoryImpl implements NoteRepository {
                 .where(NOTE_ENTITY.ACCOUNT_ID.eq(id))
                 .fetchInto(NoteEntity.class);
     }
+
+    @Override
+    public void addTag(UUID noteId, UUID tagId) {
+
+    }
+
+    @Override
+    public List<NoteEntity> findAll(UUID userId) {
+        return dsl.selectFrom(NOTE_ENTITY)
+                .where(NOTE_ENTITY.ACCOUNT_ID.eq(userId))
+                .fetchInto(NoteEntity.class);
+    }
 }

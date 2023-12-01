@@ -10,8 +10,6 @@ import ru.onko.dto.response.UserUpdateResponse;
 @RequestMapping("/user")
 public interface UsersApi {
 
-    // registerUser
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     UserResponse findProfile();
@@ -23,5 +21,4 @@ public interface UsersApi {
     @ResponseStatus(HttpStatus.ACCEPTED)
     void delete();
 
-    // confirmEmail
 }
