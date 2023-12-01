@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 'create-access-hash-table'
+      author: Khalilov Bulat
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            splitStatements: true
+            path: SQL/20231130-create-access-hash-table.sql
+            relativeToChangelogFile: true

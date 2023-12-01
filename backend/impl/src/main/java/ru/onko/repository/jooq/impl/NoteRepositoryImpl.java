@@ -60,4 +60,11 @@ public class NoteRepositoryImpl implements NoteRepository {
     public List<SymptomEntity> findSymptomsById(UUID id) {
         return null;
     }
+
+    @Override
+    public List<NoteEntity> searchByAccountId(UUID id) {
+        return dsl.selectFrom(NOTE_ENTITY)
+                .where(NOTE_ENTITY.ACCOUNT_ID.eq(id))
+                .fetchInto(NoteEntity.class);
+    }
 }

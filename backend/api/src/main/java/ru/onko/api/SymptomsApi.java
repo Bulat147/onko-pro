@@ -7,7 +7,6 @@ import ru.onko.dto.response.SymptomResponse;
 import java.util.List;
 import java.util.UUID;
 
-
 @RequestMapping("/symptom")
 public interface SymptomsApi {
     @DeleteMapping("/{id}")
@@ -16,5 +15,7 @@ public interface SymptomsApi {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<SymptomResponse> findAll();
-
+    @GetMapping("/link/{hash}")
+    @ResponseStatus(HttpStatus.OK)
+    List<SymptomResponse> findByLink(@PathVariable UUID hash);
 }

@@ -47,3 +47,7 @@ databaseChangeLog:
   - include:
       file: DDL/20231129-create-refresh-token-table.yaml
       relativeToChangelogFile: true
+  - include:
+      file: DDL/20231130-create-access-hash-table.yaml
+      relativeToChangelogFile: true
+

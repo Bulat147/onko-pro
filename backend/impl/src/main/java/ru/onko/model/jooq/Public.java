@@ -11,6 +11,7 @@ import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
+import ru.onko.model.jooq.tables.AccessHash;
 import ru.onko.model.jooq.tables.Account;
 import ru.onko.model.jooq.tables.AccountRoles;
 import ru.onko.model.jooq.tables.Article;
@@ -37,6 +38,11 @@ public class Public extends SchemaImpl {
      * The reference instance of <code>public</code>
      */
     public static final Public PUBLIC = new Public();
+
+    /**
+     * The table <code>public.access_hash</code>.
+     */
+    public final AccessHash ACCESS_HASH_ENTITY = AccessHash.ACCESS_HASH_ENTITY;
 
     /**
      * The table <code>public.account</code>.
@@ -114,6 +120,7 @@ public class Public extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
+            AccessHash.ACCESS_HASH_ENTITY,
             Account.ACCOUNT_ENTITY,
             AccountRoles.ACCOUNT_ROLES_ENTITY,
             Article.ARTICLE_ENTITY,

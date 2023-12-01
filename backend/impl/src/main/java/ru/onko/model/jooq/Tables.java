@@ -4,6 +4,7 @@
 package ru.onko.model.jooq;
 
 
+import ru.onko.model.jooq.tables.AccessHash;
 import ru.onko.model.jooq.tables.Account;
 import ru.onko.model.jooq.tables.AccountRoles;
 import ru.onko.model.jooq.tables.Article;
@@ -23,6 +24,11 @@ import ru.onko.model.jooq.tables.Symptom;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>public.access_hash</code>.
+     */
+    public static final AccessHash ACCESS_HASH_ENTITY = AccessHash.ACCESS_HASH_ENTITY;
 
     /**
      * The table <code>public.account</code>.
