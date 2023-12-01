@@ -53,11 +53,15 @@ public class NoteRepositoryImpl implements NoteRepository {
 
     @Override
     public List<NoteTagEntity> findTagsById(UUID id) {
-        return null;
+        //language=sql
+        return dsl.selectFrom("note_tag WHERE id in (SELECT tag_id FROM notes_tags WHERE note_id = :id)", id)
+                .fetchInto(NoteTagEntity.class);
     }
 
     @Override
     public List<SymptomEntity> findSymptomsById(UUID id) {
-        return null;
+        //language=sql
+        return dsl.selectFrom("symptom WHERE id in (SELECT symptom_id FROM notes_symptoms WHERE note_id = :id", id)
+                .fetchInto(SymptomEntity.class);
     }
 }
