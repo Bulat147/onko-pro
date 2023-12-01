@@ -15,8 +15,6 @@ public class SignUpController implements SignUpApi {
 
     @Override
     public void signUp(AccountSignUpRequest request, MultipartFile photo) {
-        System.out.println(request);
-        System.out.println(photo);
-        //accountService.createAccount(request);
+        accountService.createAccount(request, photo);
     }
 }

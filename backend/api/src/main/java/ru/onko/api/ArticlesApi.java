@@ -44,5 +44,4 @@ public interface ArticlesApi {
     @GetMapping("/favourite")
     @ResponseStatus(HttpStatus.OK)
     List<ArticleResponse> findFavourites();
-
 }

@@ -9,9 +9,6 @@ import ru.onko.dto.response.UserUpdateResponse;
 
 @RequestMapping("/user")
 public interface UsersApi {
-
-    // registerUser
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     UserResponse findProfile();

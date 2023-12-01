@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @RequestMapping("/symptom")
 public interface SymptomsApi {
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     void disableSymptom(@PathVariable UUID id); // enable при создании такого же реализуется копанием в бд

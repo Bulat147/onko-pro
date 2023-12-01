@@ -39,6 +39,7 @@ public class AccountServiceImpl implements AccountService {
         if (!(photo == null || photo.getSize() == 0)) {
             photoId = photoService.createPhoto(photo);
         }
+
         AccountEntity account = AccountEntity.builder()
                 .email(request.getEmail())
                 .hashPassword(passwordEncoder.encode(request.getPassword()))
