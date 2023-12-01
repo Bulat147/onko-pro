@@ -13,3 +13,7 @@ app:
 security:
   jwt:
     secret: e0a07206-2d68-44a4-bdc2-4353f5135a32
+
+file:
+  photo:
+    dir: ${FILE_DIR:files/photo/}
