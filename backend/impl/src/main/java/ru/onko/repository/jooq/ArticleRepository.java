@@ -11,4 +11,7 @@ public interface ArticleRepository extends CrudRepository<ArticleEntity, UUID> {
     List<ArticleEntity> findFavoritesByAccountId(UUID id);
 
     List<PhotoEntity> findPhotosById(UUID id);
+
+
+    List<ArticleEntity> findAll();
 }

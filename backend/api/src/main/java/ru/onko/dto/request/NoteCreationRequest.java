@@ -17,7 +17,6 @@ public class NoteCreationRequest {
 
     private String name;
     private Date creation;
-    private UUID userId;
     private String content;
     private String treatment;
     private List<UUID> existingTagsId;

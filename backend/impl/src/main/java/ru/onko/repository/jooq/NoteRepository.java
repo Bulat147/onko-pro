@@ -15,4 +15,8 @@ public interface NoteRepository extends CrudRepository<NoteEntity, UUID> {
 
     List<NoteEntity> searchByAccountId(UUID id);
 
+    void addTag(UUID noteId, UUID tagId);
+
+    List<NoteEntity> findAll(UUID userId);
+
 }
